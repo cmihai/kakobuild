@@ -1,6 +1,10 @@
-FROM debian:latest
-RUN apt-get update
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -y install gcc g++ make libboost-dev libncursesw5-dev libboost-regex-dev xsltproc
-RUN apt-get -y --no-install-recommends install asciidoc
-
+FROM fedora:latest
+ARG http_proxy
+ARG https_proxy
+RUN yum makecache
+RUN yum -y install \
+    gcc gcc-c++ make boost-devel libxslt
+RUN yum -y install \
+    asciidoc
+# RUN yum -y install \
+#     ncurses-devel
